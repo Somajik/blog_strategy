@@ -21,7 +21,7 @@
                     Blog Strategy
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAdmin">
-                        <li><a class="dropdown-item" href="#">Tableau de bord</a></li>
+                        <li><a class="dropdown-item" href="{{ path('admin') }}">Tableau de bord</a></li>
                         <li><a class="dropdown-item" href="#">Menus</a></li>
                     </ul>
                 </div>
@@ -36,21 +36,24 @@
                     </ul>
                 </div>
             
-            
             </div>
         
         </nav>
 
         <div class="container">
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a class="d-flex align-items-center mb-3 mb-md-auto text-dark text-decoration-none" href="{{ path('app_home') }}"></a>
-                <a href="{{ path('app_home') }}">
+            <a class="d-flex align-items-center mb-3 mb-md-auto text-dark text-decoration-none" href="{{ path('app_home') }}">
+                
                 <span class="fs-4">Blog Strategy</span>
                 </a>
 
-                <ul class-"nav nav- pills">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Active</a>
+                <ul class-"nav nav-pills">
+                    <li class="nav-item- list-unstyled d-flex ">
+                    <a class="nav-link link-right text-dark " href="#">S'inscrire</a>
+                    </li>
+
+                     <li class="nav-item list-unstyled">
+                    <a class="nav-link text-dark" href="#">Se connecter</a>
                     </li>
                 </ul>
             </header>
@@ -58,6 +61,13 @@
         </div>
 
         {% block body %}{% endblock %}
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="col-md-4 d-flex align-items-center">
+                <span class="copyright">{{ 'now'|date('Y') }} strategy ©  par Lysycom</span>
+                </div> 
+            </footer>
+        </div>
     </body>
 </html>
 
