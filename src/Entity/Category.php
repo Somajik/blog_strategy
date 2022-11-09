@@ -24,7 +24,7 @@ class Category
     #[ORM\Column(length: 10)]
     private ?string $color = null;
 
-    #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'categories')]
+    #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'categories')] // on remplace inversedBy par mappedBy car la categorie n'est enregistré dans la table category_article//
     private Collection $articles;
 
     public function __construct()
@@ -96,4 +96,12 @@ class Category
 
         return $this;
     }
+
+//il faut implementer la methodee string pour que cela fonctionne avec easy admin pour proposer l'affichage d'une liste deroulante des catégorie créer//
+
+public function __toString(): string
+{
+    return $this->name;//avec propriété name//
+}
+
 }

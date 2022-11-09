@@ -3,7 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
 
 class CategoryCrudController extends AbstractCrudController
 {
@@ -12,14 +15,16 @@ class CategoryCrudController extends AbstractCrudController
         return Category::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            
+           yield TextField::new('name'),
+           yield SlugField::new('slug')
+                ->SetTargetFieldName('name'), //setTargetFieldName Ce champ utilise JavaScript pour générer dynamiquement le slug en fonction du contenu dun autre champ. Cette option définit le nom de la propriété dentité associée à ce champ //
+            yield ColorField::new('color'),
         ];
     }
-    */
+    
 }
