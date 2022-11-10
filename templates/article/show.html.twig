@@ -7,6 +7,16 @@
         <h1>{{ article.title }}</h1>
     <hr><!-- HR ligne horizontale -->
         <p>{{ article.content|raw}}</p> <!-- filtre twig raw pour effacer le code div html -->
+
+        <h2 class="comment-title mt-5">
+        <span id="comment-count">{{ article.comments|length }} commentaire(s)</span>
+        </h2>
+
+        <hr>
+
+        <div class="comment-aera mb-5">
+        {{ form(commentForm) }}
+        </div>
     </div>
 
 {% endblock %}

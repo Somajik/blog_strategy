@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,12 +55,16 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable //YIELD Les générateurs fournissent une façon simple de mettre en place des itérateurs sans le coût ni la complexité du développement d’une classe qui implémente l’interface Iterator. Un générateur vous permet d’écrire du code qui utilise foreach pour parcourir un jeu de données, sans avoir à construire un tableau en mémoire pouvant conduire à dépasser la limite de la mémoire ou nécessiter un temps important pour sa génération. Au lieu de cela, vous pouvez écrire une fonction générateur, qui est identique à une fonction normale, mis à part le fait qu’au lieu de retourner une seule fois, un générateur peut utiliser yield autant de fois que nécessaire, afin de fournir les valeurs à parcourir.
     {//creation menu du tableau de bord back-office//
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToRoute('Aller sur le site', 'fa fa-undo', 'app_home');
 
         yield MenuItem::subMenu('Articles', 'fas fa-newspaper')-> setSubItems([
             MenuItem::linkToCrud('Tous les articles','fas fa-newspaper',Article::class),
             MenuItem::linkToCrud('Ajouter','fas fa-plus',Article::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Categories','fas fa-list',Category::class)
+
+
         ]); // en lien avec l'entité Article //
+
+        yield MenuItem::linkToCrud('Commentaires','fas fa-comment',Comment::class);
     }
 }

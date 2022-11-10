@@ -3,12 +3,11 @@
 <div class="p-4">
     <h4 class="fst-italic">Categories</h4>
         <ol class="list-unstyled mb-0">
+        {% for category in categories %}
+        
             <li>
-            <a class="text-decoration-none" href="#">tutoriel finance</a>
+            <a class="text-decoration-none" href="{{ path ('category_show', { slug: category.slug }) }}">{{category.name}}</a>
             </li>
-            <li>
-            <a class="text-decoration-none" href="#">tutoriel juridique</a>
-            </li>
-
+{% endfor %}
         </ol>
 </div>
