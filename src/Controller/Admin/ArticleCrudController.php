@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -30,6 +31,13 @@ class ArticleCrudController extends AbstractCrudController
         yield TextEditorField::new('content');
 
         yield TextField::new('featuredText');
+
+        yield ImageField::new('picture')
+        ->setBasePath('uploads/')
+        ->setUploadDir('public/uploads')
+        ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
+
+
 
         yield DateTimeField::new('createdAt');
         

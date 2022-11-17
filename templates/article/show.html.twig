@@ -6,16 +6,27 @@
     <div class="container">
         <h1>{{ article.title }}</h1>
     <hr><!-- HR ligne horizontale -->
-        <p>{{ article.content|raw}}</p> <!-- filtre twig raw pour effacer le code div html -->
+        <p>{{ article.content|raw}}</p> <!-- filtre twig raw pour effacer le code "div" qui apparait en html -->
 
         <h2 class="comment-title mt-5">
-        <span id="comment-count">{{ article.comments|length }} commentaire(s)</span>
-        </h2>
+        <span class ="comment-count">{{ article.comments|length }}</span> commentaire(s)
+        </h2><!--pour compter le nombre d'article-->
 
         <hr>
 
         <div class="comment-aera mb-5">
-        {{ form(commentForm) }}
+        {{ form_start(commentForm, {'action': path ('comment_add')}) }}
+
+        {{ form(commentForm, { 'attr': { 'class': 'comment-form' }}) }} 
+        {{ form_end(commentForm) }}
+
+        </div>
+
+        <div class="comment-list">
+        {% for comment in article.comments %}
+
+        {% include 'comment/index.html.twig' with [comment] %}
+        {% endfor %}
         </div>
     </div>
 

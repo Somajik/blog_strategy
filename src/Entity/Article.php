@@ -43,6 +43,9 @@ class Article
     #[ORM\ManyToOne]
     private ?Media $featuredImage = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $picture = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -191,6 +194,22 @@ class Article
     public function setFeaturedImage(?Media $featuredImage): self
     {
         $this->featuredImage = $featuredImage;
+
+        return $this;
+    }
+    public function __toString(): string
+    {
+        return $this->title; //pour recuperer l'element titre en string de l entity article //
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }
