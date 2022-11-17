@@ -5,6 +5,10 @@
 {% block body %}
     <div class="container">
         <h1>{{ article.title }}</h1>
+        <img src="{{ asset ('uploads/' ~ article.picture) }}" alt="">
+
+       
+
     <hr><!-- HR ligne horizontale -->
         <p>{{ article.content|raw}}</p> <!-- filtre twig raw pour effacer le code "div" qui apparait en html -->
 
