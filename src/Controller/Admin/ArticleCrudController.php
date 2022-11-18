@@ -35,7 +35,8 @@ class ArticleCrudController extends AbstractCrudController
         yield ImageField::new('picture')
         ->setBasePath('uploads/')
         ->setUploadDir('public/uploads')
-        ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
+        ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');// UUID unique id//
+                                            //[timestamp]//
 
 
 

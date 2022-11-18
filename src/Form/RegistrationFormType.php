@@ -20,9 +20,11 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        
             ->add('username',TextType::class,[
                 'label'=>'Nom d\'utilisateur'
             ])
+           
         
             ->add('plainPassword', RepeatedType::class, [
               
@@ -46,7 +48,9 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                
             ])
+            
         ;
     }
 

@@ -6,17 +6,20 @@
     <div class="col-md-5">
         {% if article.featuredImage %}
             <a href="{{ article_show }}"> <!-- quand on clique sur l'image  on  arrrive sur l'artricle -->
-            <img src="/uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.altText }}" loading="lazy" width="350" height="205">
+            {# <img src="{{ asset ('uploads/' ~ article.picture) }}" alt="{{ article.picture.altText }}" loading="lazy" width="200" height="200"> #}
             <!-- loading lazy pour charger l'image quand elle apparait avec une taille prédefini -->
             </a>
+            
     {% endif %}
 
     </div>
 
     <div class="col-md-7">
     <h2>
-    <a class="text-decoration-none" href="{{ article_show }}">{{ article.title }}</a>
+    <a class="text-decoration-none" href="{{ article_show }}">
+    {{ article.title }}</a>
     </h2>
+    <img src="{{ asset ('uploads/' ~ article.picture) }}" loading="lazy" width="100" height="100">">
     <p>
     {{article.createdAt |date ('d M Y') }}
     </p>

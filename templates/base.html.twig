@@ -43,29 +43,45 @@
 
         <div class="container">
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a class="d-flex align-items-center mb-3 mb-md-auto text-dark text-decoration-none" href="{{ path('app_home') }}">
+            <a class="d-flex align-items-center mb-3 mb-md-auto text-dark text-decoration-none" href="{{ path('home') }}">
                 
                 <span class="fs-4">Blog Strategy</span>
                 </a>
 
                 <ul class-"nav nav-pills">
-                 {% if app.user %}
-                 <li class="nav-item- list-unstyled d-flex ">
+                 {# {% if app.user %} #}
+                 {# <li class="nav-item- list-unstyled d-flex ">
                    
 
                     <a class="nav-link link-right text-dark " href="{{ path('app_logout') }}">Se Déconnecter</a>
-                    </li>
-                 {% else %}
+                    </li> #}
+                 {# {% else %} #}
                     <li class="nav-item- list-unstyled d-flex ">
                    
+                    {% if not is_granted ('IS_AUTHENTICATED_FULLY') %}
+                        <a class="nav-link link-right text-dark " href="{{ path('register') }}">S'inscrire</a>
+                        </li>
 
-                    <a class="nav-link link-right text-dark " href="{{ path('app_register') }}">S'inscrire</a>
-                    </li>
-
-                     <li class="nav-item list-unstyled">
-                    <a class="nav-link text-dark-mr-4" href="{{ path('app_login') }}">Se connecter</a>
-                    </li>
-                 {% endif %}
+                        <li class="nav-item list-unstyled">
+                        <a class="nav-link text-dark-mr-4" href="{{ path('login') }}">Se connecter</a>
+                        </li>
+                        {% else %}
+                            <div class="dropdown">
+                            <a  class="nav nav-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ app.user.username|capitalize}}
+                            </a>
+                            <ul class ="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('app_profile', { username: app.user.username}) }}" >Mon Profil</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('logout') }}">Se Déconnecter</a>
+                                </li>
+                            
+                            </ul>
+                            
+                            </div>
+                    {% endif %} 
                 </ul>
 
             </header>
@@ -78,6 +94,7 @@
                 <div class="col-md-4 d-flex align-items-center">
                 <span class="copyright">{{ 'now'|date('Y') }} strategy ©  par Lysycom</span>
                 </div> 
+                <a class="d-flex flex-wrap text-dark" href="{{ path ('app_mentions_legales') }}">Mentions légales</a>
             </footer>
         </div>
     </body>

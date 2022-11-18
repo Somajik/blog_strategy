@@ -5,8 +5,9 @@
 {% block body %}
     <div class="container">
         <h1>{{ article.title }}</h1>
-        <img src="{{ asset ('uploads/' ~ article.picture) }}" alt="">
-
+        <div class="d-flex justify-content-left">
+        <img src="{{ asset ('uploads/' ~ article.picture) }}" alt="" loading="lazy" width="500" height="400">
+    </div>
        
 
     <hr><!-- HR ligne horizontale -->

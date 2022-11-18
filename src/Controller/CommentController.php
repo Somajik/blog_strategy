@@ -14,6 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
+/**
+ * @method User getUser() 
+ */
 class CommentController extends AbstractController
 {
     #[Route('/ajax/comments/', name: 'comment_add')] //intercepter l'information avant l'article controller faire des requêtes vers le serveur sans recharger la page ;//
