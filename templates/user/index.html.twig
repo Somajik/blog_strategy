@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}profil{% endblock %}
 
 {% block body %}
 <div class="container w-25">
@@ -12,7 +12,7 @@
         </div>
             <div class="mb-3">
                 <div class="input-group">
-                <span class="input-group-text">@</span>
+               
                 <input type="text" class="form-control" value="{{ user.username }}" read only>
                 </div>
             </div>
@@ -21,6 +21,7 @@
     <div class="mb-3">
         <p>Nombre de commentaires posté: {{ user.comments|length }}</p>
     </div>
+    <a href="{{ path ('app_delete_user',{ 'id': user.id }) }}">Supprimer le compte</a>
 
 </div>
 {% endblock %}

@@ -28,7 +28,7 @@ class UserController extends AbstractController
 
 
 
-    #[Route('/user/register', name: 'register')]
+    #[Route('/register', name: 'register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $em): Response
     {
         $user = new User();
@@ -50,12 +50,12 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/login', name: 'login')]
+    #[Route('/login', name: 'login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirectToRoute('home');
-        }
+        // if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+        //     return $this->redirectToRoute('home');
+        // }
 
         return $this->render('user/login.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
@@ -63,17 +63,19 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/logout', name: 'logout', methods: ['GET'])]
+    #[Route('/logout', name: 'logout')]
     public function logout()
     {
-        throw new \Exception('Don\'t forget to activate logout in security.yaml');
+         throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
 
-    #[Route('/user/{username}', name: 'app_user')]
-    public function index(User $user): Response
+    #[Route('/app/user/delete/{id}', name: 'app_delete_user')]
+    public function deleteUser($id,EntityManagerInterface $entityManagerInterface)
     {
-        return $this->render('user/index.html.twig', [
-            'user' => $user
-        ]);
+        $repository = $entityManagerInterface->getRepository(User::class);
+        $user = $repository->find($id);
+        $entityManagerInterface->remove($user);
+        $entityManagerInterface->flush();
+        return $this->redirectToRoute('home');
     }
 }

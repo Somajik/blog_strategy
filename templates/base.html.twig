@@ -56,10 +56,12 @@
                     <a class="nav-link link-right text-dark " href="{{ path('app_logout') }}">Se Déconnecter</a>
                     </li> #}
                  {# {% else %} #}
-                    <li class="nav-item- list-unstyled d-flex ">
+                    
                    
                     {% if not is_granted ('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item- list-unstyled d-flex ">
                         <a class="nav-link link-right text-dark " href="{{ path('register') }}">S'inscrire</a>
+                        
                         </li>
 
                         <li class="nav-item list-unstyled">
@@ -94,6 +96,7 @@
                 <div class="col-md-4 d-flex align-items-center">
                 <span class="copyright">{{ 'now'|date('Y') }} strategy ©  par Lysycom</span>
                 </div> 
+                <a class="d-flex flex-wrap text-dark" href="mailto:Strategyblog@gmail.com">Contact</a>
                 <a class="d-flex flex-wrap text-dark" href="{{ path ('app_mentions_legales') }}">Mentions légales</a>
             </footer>
         </div>
