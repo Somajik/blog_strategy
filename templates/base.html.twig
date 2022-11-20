@@ -17,25 +17,35 @@
     <body>
         <nav class="py-2 bg-dark border-bottom">
             <div class="container d-flex flex-wrap">
+                     {% if is_granted('ROLE_ADMIN') %}
+
                 <div class="dropdown">
                     <a class="nav nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Blog Strategy
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAdmin">
-                        <li><a class="dropdown-item" href="{{ path('admin') }}">Tableau de bord</a></li>
-                        <li><a class="dropdown-item" href="#">Menus</a></li>
-                    </ul>
-                </div>
 
-                <div class="dropdown">
-                    <a class="nav nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Ajouter
-                    </a>
+
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAdmin">
-                        <li><a class="dropdown-item" href="#">Article</a></li>
-                        <li><a class="dropdown-item" href="#">Page</a></li>
+                         {# {% if  app.user and app.user.roles[1] =="ROLE_ADMIN" %}  #}
+                        <li><a class="dropdown-item" href="{{ path('admin') }}">Tableau de bord</a></li>
+                        {# <li><a class="dropdown-item" href="#">Menus</a></li> #}
                     </ul>
                 </div>
+                         {% endif %}  
+
+
+                {# <div class="dropdown">
+                    <a class="nav nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Categories d'articles
+                    </a>
+                    
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAdmin">
+                     {# {% for category in categories %}
+                        <li><a class="dropdown-item" href="{{ path ('category_show', { slug: category.slug }) }}">{{category.name}}</a></li>
+                       
+                        {% endfor %} #}
+                    </ul>
+                </div> 
             
             </div>
         
@@ -89,7 +99,7 @@
             </header>
         
         </div>
-
+         
         {% block body %}{% endblock %}
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
