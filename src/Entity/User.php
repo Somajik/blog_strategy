@@ -31,7 +31,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: 
+    Comment::class)]
+    /**
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
     private Collection $comments;
 
     public function __construct()

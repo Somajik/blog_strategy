@@ -1,31 +1,44 @@
-{% set article_show =  path ('article_show', { 'slug': article.slug }) %}
+{% set article_show =  path ('article_show', { 'id': article.id }) %}
 
 
 <article class="mb-5">
-    <div class="row">
-    <div class="col-md-5">
+    {# <div class="row">
+    <div class="col-md-5"> #}
         {% if article.featuredImage %}
             <a href="{{ article_show }}"> <!-- quand on clique sur l'image  on  arrrive sur l'artricle -->
             {# <img src="{{ asset ('uploads/' ~ article.picture) }}" alt="{{ article.picture.altText }}" loading="lazy" width="200" height="200"> #}
             <!-- loading lazy pour charger l'image quand elle apparait avec une taille prédefini -->
             </a>
             
+            
     {% endif %}
 
     </div>
 
-    <div class="col-md-7">
+    {# <div class="col-md-7">
     <h2>
     <a class="text-decoration-none" href="{{ article_show }}">
     {{ article.title }}</a>
     </h2>
-    <img src="{{ asset ('uploads/' ~ article.picture) }}" loading="lazy" width="100" height="100">">
+    <img src="{{ asset ('uploads/' ~ article.picture) }}" loading="lazy" width="100" height="100">
     <p>
     {{article.createdAt |date ('d M Y') }}
     </p>
     {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ ''}} <!--sinon prendre la description du text ou les 130 premer caractére du content et "~" a la fin on ajoute ... -->
     
-    </div>
+    </div> #}
 
+<div class="col-md-8">
+
+        <figure class="figure">
+            <img src="{{ asset ('uploads/' ~ article.picture) }}" loading="lazy" width="300" height="200" class="figure-img rounded" alt="...">
+             {# <figcaption class="figure-caption fs-1"> {{ article.title }}</figcaption>   #}
+            <a class="text-dark text-decoration-none fs-1 " href="{{ article_show }} {{ article.title }}">
+            {{ article.title }}</a >
+             <p>{{article.createdAt |date ('d M Y') }}</p>
+            {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ ''}} <!--sinon prendre la description du text ou les 130 premer caractére du content et "~" a la fin on ajoute ... -->
+        </figure>
+</div>
 
 </article>
+

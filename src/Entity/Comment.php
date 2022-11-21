@@ -22,6 +22,8 @@ class Comment
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
+    // #[ORM\JoinColumn(onCascade: 'delete')]
+    
     private ?Article $article = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]

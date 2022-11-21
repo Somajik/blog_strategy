@@ -12,14 +12,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticleController extends AbstractController
 {
-    #[Route('/article/{slug}', name: 'article_show')]
-    public function show($slug ,Article $article): Response
+    #[Route('/article/{id}', name: 'article_show')]
+    /*
+    * @ParamConverter("article", options={"id" = "article_id"})
+    */
+    public function show($id , Article $article): Response
     {
         if(!$article) {
             //si le variable article n'existe pas on retourne a la page home//
             return $this->redirectToRoute('app_home');
         }
         
+       
         $comment = new Comment($article); //pour mettre en relation un nouveau commentaire a un article //
 
         $commentForm = $this->createForm(CommentType::class, $comment);

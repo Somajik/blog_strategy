@@ -60,7 +60,7 @@ class CommentController extends AbstractController
         ]);
         $commentForm = $this->createForm(CommentType::class, $comment);
 
-        return $this->redirectToRoute('article_show', ['slug'=>$article->getSlug(),'article' => $article,'commentForm'=>$commentForm]);
+        return $this->redirectToRoute('article_show', ['id'=>$article->getId(),'article' => $article,'commentForm'=>$commentForm]);
 
 
         // return $this->json([
