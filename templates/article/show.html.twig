@@ -4,22 +4,22 @@
 
 {% block body %}
     <div class="container">
-        <h1>{{ article.title }}</h1>
+        <h1 class="text-white">{{ article.title }}</h1>
         <div class="d-flex justify-content-left">
         <img src="{{ asset ('uploads/' ~ article.picture) }}" alt="" loading="lazy" width="500" height="400">
     </div>
        
 
     <hr><!-- HR ligne horizontale -->
-        <p>{{ article.content|raw}}</p> <!-- filtre twig raw pour effacer le code "div" qui apparait en html -->
+        <p class="text-white">{{ article.content}}</p> <!-- filtre twig |raw pour effacer le code "div" qui apparait en html -->
 
-        <h2 class="comment-title mt-5">
+        <h2 class="comment-title mt-5 text-white">
         <span class ="comment-count">{{ article.comments|length }}</span> commentaire(s)
         </h2><!--pour compter le nombre d'article-->
 
         <hr>
 
-        <div class="comment-aera mb-5">
+        <div class="comment-aera mb-5 text-white">
         {{ form_start(commentForm, {'action': path ('comment_add')}) }}
 
         {{ form(commentForm, { 'attr': { 'class': 'comment-form' }}) }} 

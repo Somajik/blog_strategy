@@ -14,7 +14,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
+    <body class="bg-black">
         <nav class="py-2 bg-dark border-bottom">
             <div class="container d-flex flex-wrap">
                      {% if is_granted('ROLE_ADMIN') %}
@@ -44,7 +44,7 @@
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a class="d-flex align-items-center mb-3 mb-md-auto text-dark text-decoration-none" href="{{ path('home') }}">
                 
-                <span class="fs-4">Blog Strategy</span>
+                <span class="fs-4 text-white">Blog Strategy</span>
                 </a>
 
                 <ul class-"nav nav-pills">
@@ -53,21 +53,21 @@
                    
                     {% if not is_granted ('IS_AUTHENTICATED_FULLY') %}
                     <li class="nav-item- list-unstyled d-flex ">
-                        <a class="nav-link link-right text-dark " href="{{ path('register') }}">S'inscrire</a>
+                        <a class="nav-link link-right text-white " href="{{ path('register') }}">S'inscrire</a>
                         
                         </li>
 
                         <li class="nav-item list-unstyled">
-                        <a class="nav-link text-dark-mr-4" href="{{ path('login') }}">Se connecter</a>
+                        <a class="nav-link text-white-mr-4" href="{{ path('login') }}">Se connecter</a>
                         </li>
                         {% else %}
                             <div class="dropdown">
-                            <a  class="nav nav-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a  class="nav nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ app.user.username|capitalize}}
                             </a>
                             <ul class ="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="{{ path('app_profile', { username: app.user.username}) }}" >Mon Profil</a>
+                                    <a class="dropdown-item" href="{{ path('app_profile', { username: app.user.username}) }}">Mon Profil</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="{{ path('logout') }}">Se Déconnecter</a>
@@ -78,19 +78,21 @@
                             </div>
                     {% endif %} 
                 </ul>
-
+                
             </header>
         
         </div>
          
-        {% block body %}{% endblock %}
+        {% block body %}
+        
+        {% endblock %}
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <div class="col-md-4 d-flex align-items-center">
-                <span class="copyright">{{ 'now'|date('Y') }} strategy ©  par Lysycom</span>
+                <span class="copyright text-white">{{ 'now'|date('Y') }} strategy ©  par Lysycom</span>
                 </div> 
-                <a class="d-flex flex-wrap text-dark" href="mailto:Strategyblog@gmail.com">Contact</a>
-                <a class="d-flex flex-wrap text-dark" href="{{ path ('app_mentions_legales') }}">Mentions légales</a>
+                <a class="d-flex flex-wrap text-white" href="mailto:Strategyblog@gmail.com">Contact</a>
+                <a class="d-flex flex-wrap text-white" href="{{ path ('app_mentions_legales') }}">Mentions légales</a>
             </footer>
         </div>
     </body>
