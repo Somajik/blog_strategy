@@ -21,18 +21,18 @@ class ArticleCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable //yield a place de return//
     {
-        yield TextField::new('title');
+        yield TextField::new('title','Titre');
 
             yield SlugField::new('slug')
             ->setTargetFieldName('title');
 
-        yield AssociationField::new('categories');
+        yield AssociationField::new('categories', 'Catégories');
 
-        yield TextEditorField::new('content');
+        yield TextEditorField::new('content', 'Contenu');
 
-        yield TextField::new('featuredText');
+        yield TextField::new('featuredText', 'Description');
 
-        yield ImageField::new('picture')
+        yield ImageField::new('picture','Image')
         ->setBasePath('uploads/')
         ->setUploadDir('public/uploads')
         ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');// UUID unique id//
@@ -40,10 +40,10 @@ class ArticleCrudController extends AbstractCrudController
 
 
 
-        yield DateTimeField::new('createdAt');
+        yield DateTimeField::new('createdAt','Date de création');
         
 
-        yield DateTimeField::new('updateAt');
+        yield DateTimeField::new('updateAt', 'Date de mise à jour');
        
 
     }

@@ -27,9 +27,9 @@ class CommentCrudController extends AbstractCrudController
     {
         
             
-           yield TextareaField::new('content');
-           yield DateTimeField::new('created_at');
-           yield AssociationField::new('user');
+           yield TextareaField::new('content','Contenu du commentaires');
+           yield DateTimeField::new('created_at', 'Date de création');
+           yield AssociationField::new('user','Login');
             
         
     }

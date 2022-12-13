@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository;
+use Symfony\Component\Form\ChoiceList\Factory\Cache\ChoiceLabel;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserCrudController extends AbstractCrudController
@@ -27,19 +28,21 @@ class UserCrudController extends AbstractCrudController
     {
         
            
-        yield TextField::new('username',);
+        yield TextField::new('username','Login');
         // yield TextField::new('password')->onlyOnForms()
         // ->setFormType(PasswordType::class);// yield propre a easy admin//
-        yield ChoiceField::new('roles')
+        yield ChoiceField::new('roles','Statut')
         ->allowMultipleChoices()
         ->renderAsBadges([
             'ROLE_ADMIN' => 'success',
             'ROLE_AUTHOR' => 'warning',
+            'ROLE_USER' => 'secondary',
             
         ])
         ->setChoices([
             'Administrateur' => 'ROLE_ADMIN',
-            'Auteur' => 'ROLE_AUTHOR'
+            'Auteur' => 'ROLE_AUTHOR',
+            'User' => 'ROLE_USER'
         ]);
     
     }
