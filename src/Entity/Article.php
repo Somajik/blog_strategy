@@ -40,8 +40,7 @@ class Article
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
-    #[ORM\ManyToOne]
-    private ?Media $featuredImage = null;
+   
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
@@ -186,17 +185,7 @@ class Article
         return $this;
     }
 
-    public function getFeaturedImage(): ?Media
-    {
-        return $this->featuredImage;
-    }
-
-    public function setFeaturedImage(?Media $featuredImage): self
-    {
-        $this->featuredImage = $featuredImage;
-
-        return $this;
-    }
+    
     public function __toString(): string
     {
         return $this->title; //pour recuperer l'element titre en string de l entity article //

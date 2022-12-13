@@ -3,26 +3,18 @@
 {% block title %}profil{% endblock %}
 
 {% block body %}
-<div class="container w-25">
+<div class="container w-25 text-primary">
     <div class="row">
         <div class="col">
-        <h2>Profil de {{ user.username|capitalize }}</h2>
-        {# <div class="col-12">
-            <label for="username" class="form-label">Nom d'utilisateur</label>
-        </div> #}
-            {# <div class="mb-3">
-                <div class="input-group">
-               
-                <input type="text" class="form-control" value="{{ user.username }}" read only>
-                </div>
-            </div> #}
+        <h2 class="text-primary">Profil de {{ user.username|capitalize }}</h2>
+      
             {{ form_start(updateForm, { attr: {novalidate: 'novalidate'} }) }}
             {{ form(updateForm) }}
             {{ form_end(updateForm)}}
         </div>
     </div>
     <div class="mb-3">
-        <p>Nombre de commentaires posté: {{ user.comments|length }}</p>
+        <p class="text-secondary">Nombre de commentaires posté: {{ user.comments|length }}</p>
     </div>
     <a href="{{ path ('app_delete_user',{ 'id': user.id }) }}">Supprimer le compte</a>
 

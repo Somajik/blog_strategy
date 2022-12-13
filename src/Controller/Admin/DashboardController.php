@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Menu;
+
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\Category;

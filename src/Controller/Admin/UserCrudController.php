@@ -34,7 +34,8 @@ class UserCrudController extends AbstractCrudController
         ->allowMultipleChoices()
         ->renderAsBadges([
             'ROLE_ADMIN' => 'success',
-            'ROLE_AUTHOR' => 'warning'
+            'ROLE_AUTHOR' => 'warning',
+            
         ])
         ->setChoices([
             'Administrateur' => 'ROLE_ADMIN',
