@@ -37,6 +37,11 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+    role_hierarchy:
+        ROLE_USER:       ROLE_USER
+        ROLE_AUTHOR:     [ROLE_USER, ROLE_AUTHOR]
+        ROLE_ADMIN: [ROLE_USER, ROLE_AUTHOR, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+#fonctionnalité des roles cumul admin author et user , ROLE_ALLOWED_TO_SWITCH pour basculer d'un role a l'autre #
 
 when@test:
     security:

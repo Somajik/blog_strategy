@@ -17,7 +17,7 @@
     <body class="bg-black">
         <nav class="py-2 bg-dark border-bottom">
             <div class="container d-flex flex-wrap">
-                     {% if is_granted('ROLE_ADMIN') %}
+                     {% if is_granted('ROLE_AUTHOR') %}
 
                 <div class="dropdown">
                     <a class="nav nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -26,9 +26,9 @@
 
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAdmin">
-                         {# {% if  app.user and app.user.roles[1] =="ROLE_ADMIN" %}  #}
+                         
                         <li><a class="dropdown-item" href="{{ path('admin') }}">Tableau de bord</a></li>
-                        {# <li><a class="dropdown-item" href="#">Menus</a></li> #}
+                    
                     </ul>
                 </div>
                          {% endif %} 

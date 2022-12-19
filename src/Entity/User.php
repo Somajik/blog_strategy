@@ -38,9 +38,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private Collection $comments;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
+    private Collection $no;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->no = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -137,6 +141,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getNo(): Collection
+    {
+        return $this->no;
+    }
+
+    public function addNo(Article $no): self
+    {
+        if (!$this->no->contains($no)) {
+            $this->no->add($no);
+            $no->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNo(Article $no): self
+    {
+        if ($this->no->removeElement($no)) {
+            // set the owning side to null (unless already changed)
+            if ($no->getUser() === $this) {
+                $no->setUser(null);
             }
         }
 

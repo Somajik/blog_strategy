@@ -45,6 +45,9 @@ class Article
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
+    #[ORM\ManyToOne(inversedBy: 'no')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -199,6 +202,18 @@ class Article
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

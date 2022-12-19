@@ -10,9 +10,14 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 class ArticleCrudController extends AbstractCrudController
 {
+/**
+ * @IsGranted("ROLE_ADMIN")
+ */
     public static function getEntityFqcn(): string
     {
         return Article::class;
@@ -44,6 +49,8 @@ class ArticleCrudController extends AbstractCrudController
         
 
         yield DateTimeField::new('updateAt', 'Date de mise à jour');
+
+        yield TextField::new('user','Auteur');
        
 
     }

@@ -18,20 +18,18 @@ class CommentCrudController extends AbstractCrudController
         return Comment::class;
     }
 
-   public function configureActions(Actions $actions): Actions
-   {
-    return $actions //on enleve la parrtie creer un commentairespour la partie admin et on remplace par index//
-    ->remove(Crud::PAGE_INDEX,Action::NEW);
-   }
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions //on enleve la partie creer un commentaires pour la partie admin et on remplace par index//
+            ->remove(Crud::PAGE_INDEX, Action::NEW )
+            ->remove(Crud::PAGE_INDEX, Action::EDIT);
+    }
     public function configureFields(string $pageName): iterable
     {
-        
-            
-           yield TextareaField::new('content','Contenu du commentaires');
-           yield DateTimeField::new('created_at', 'Date de création');
-           yield AssociationField::new('user','Login');
-            
-        
+
+
+        yield TextareaField::new('content', 'Contenu du commentaires');
+        yield DateTimeField::new('created_at', 'Date de création');
+        yield AssociationField::new('user', 'Login');
     }
-    
 }
