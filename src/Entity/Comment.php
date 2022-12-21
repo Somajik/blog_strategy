@@ -25,9 +25,9 @@ class Comment
     // #[ORM\JoinColumn(onCascade: 'delete')]
     
     private ?Article $article = null;
-
+    // #[ORM\JoinColumn(onCascade: 'delete')]
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete:"CASCADE")]
     private ?User $user = null;
 
     public function __construct(Article $article)

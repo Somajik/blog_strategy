@@ -22,7 +22,7 @@ class CategoryCrudController extends AbstractCrudController
             
            yield TextField::new('name',"Nom"),
            yield SlugField::new('slug')
-                ->SetTargetFieldName('name'), //setTargetFieldName Ce champ utilise JavaScript pour générer dynamiquement le slug en fonction du contenu dun autre champ. Cette option définit le nom de la propriété dentité associée à ce champ //
+                ->SetTargetFieldName('name'), //setTargetFieldName Ce champ utilise JavaScript pour générer dynamiquement le slug en fonction du contenu dun autre champ. Cette option définit le nom de la propriété de l'entité associée à ce champ //
             yield ColorField::new('color', 'Couleur'),
         ];
     }

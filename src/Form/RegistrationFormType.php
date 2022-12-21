@@ -29,6 +29,7 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
               
                 'mapped' => false,
+                'type' => PasswordType::class,
                 'attr' => ['autocomplete' => 'new-password'], // peut proposer un mot de pass securisé//
                 'options'=> [
                     'attr' => [
@@ -44,7 +45,7 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
+                        // max length allowed by Symfony for security reasons capacité maxim
                         'max' => 4096,
                     ]),
                 ],

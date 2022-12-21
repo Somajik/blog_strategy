@@ -32,17 +32,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: 
-    Comment::class)]
+    Comment::class,cascade: ['persist', 'remove'], orphanRemoval: true)]// pour supprimer un user qui a fait un commentaire pour brisé la relation entre USER et COMMENTAIRES //
     /**
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private Collection $comments;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)] 
     private Collection $no;
 
     public function __construct()
     {
+        $this->roles = ['ROLE_USER'];// attribué le role user automatiquement lors de la creation d'un user //
         $this->comments = new ArrayCollection();
         $this->no = new ArrayCollection();
     }
@@ -175,6 +176,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+    public function __toString(): string
+    {
+        return $this->username;
     }
     
 }

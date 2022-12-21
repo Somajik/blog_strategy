@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use App\Security\AppLoginAuthenticator;
 
 class UserController extends AbstractController
 {
@@ -61,7 +63,8 @@ class UserController extends AbstractController
 
 
     #[Route('/register', name: 'register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $em): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $em,UserAuthenticatorInterface $authenticator, 
+    AppLoginAuthenticator $formAuthenticator): Response
     {
         $user = new User();
 
@@ -74,7 +77,12 @@ class UserController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('home');
+            return $authenticator->authenticateUser(
+                $user, 
+                $formAuthenticator, 
+                $request,
+              );
+            //return $this->redirectToRoute('home');
         }
 
         return $this->render('user/register.html.twig', [
