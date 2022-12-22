@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -34,6 +35,12 @@ class Article
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updateAt = null;
 
+    /**
+     * @Assert\Count(
+     *      min = "1"
+     * )
+     */ 
+    //pour @Assert\Count avoir au moins une categorie obligatoire pour un article //
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')] // on remplace mappedBy par inversedBy   car la categorie n'est enregistré dans la table category_article//
     private Collection $categories;
 

@@ -6,9 +6,12 @@
         {% for category in categories %}
         
             <li>
-            <a class="text-decoration-none" href="{{ path ('category_show', { slug: category.slug }) }}">{{category.name}}</a>
+            <a style='color:{{category.color}};' class="text-decoration-none" href="{{ path ('category_show', { slug: category.slug }) }}">{{category.name}}</a>
             </li>
         {% endfor %}
         </ol>
         
 </div>
+
+
+
