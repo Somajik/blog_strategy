@@ -9,18 +9,17 @@
 
     </div> #}
 
-
-<div class="col-md-8">
-
-        <figure class="figure">
+<div class="col-md-6 col-sm-6 highlight">
             <img src="{{ asset ('uploads/' ~ article.picture) }}" loading="lazy" width="300" height="200" class="figure-img rounded" alt="...">
              {# <figcaption class="figure-caption fs-1"> {{ article.title }}</figcaption>   #}
-            <a class="text-white text-decoration-none fs-1 " href="{{ article_show }} {{ article.title }}">
-            {{ article.title }}</a >
-             <p class="text-white">{{article.createdAt |date ('d M Y') }}</p>
-             
-           <p class="text-white"> {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ ''}}</p> <!--sinon prendre la description du text ou les 130 premer caractére du content et "~" a la fin on ajoute ... -->
-        </figure>
+            <div class="h-caption">
+                 <h2><a class="text-black text-decoration-none fs-3" href="{{ article_show }} {{ article.title }}">
+                 {{ article.title }}</a ></h2>
+                 </div>
+                 <div class="h-body text-center">
+                <p class="text-black ">{{article.createdAt |date ('d M Y') }}</p>
+                <p class="text-black d-flex justify-content"> {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ ''}}</p> <!--sinon prendre la description du text ou les 130 premer caractére du content et "~" a la fin on ajoute ... -->
+          </div>
 </div>
 
 </article>
