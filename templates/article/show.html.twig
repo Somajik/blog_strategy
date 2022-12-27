@@ -3,23 +3,23 @@
 {% block title %}{{article.title}}{% endblock %}
 
 {% block body %}
-    <div class="container text-white">
-        <h1 class="text-white">{{ article.title }}</h1>
+    <div class="container text-dark">
+        <h1 class="text-dark p-5 text-decoration-underline ">{{ article.title }}</h1>
         <div class="d-flex justify-content-left">
-        <img src="{{ asset ('uploads/' ~ article.picture) }}" alt="" loading="lazy" width="500" height="400">
+        <img src="{{ asset ('uploads/' ~ article.picture) }}" alt="" loading="lazy" width="900" height="500">
     </div>
        
 
     <hr><!-- HR ligne horizontale -->
-        <p class="text-white">{{ article.content|raw}}</p> <!-- filtre twig |raw pour effacer le code "div" qui apparait en html -->
+        <p class="text-dark">{{ article.content|raw}}</p> <!-- filtre twig |raw pour effacer le code "div" qui apparait en html -->
 
-        <h2 class="comment-title mt-5 text-white">
+        <h2 class="comment-title mt-5 text-dark p-3">
         <span class ="comment-count">{{ article.comments|length }}</span> commentaire(s)
         </h2><!--pour compter le nombre d'article-->
 
         <hr>
 
-        <div class="comment-aera mb-5 text-white">
+        <div class="comment-aera mb-5 text-dark p-3">
         {{ form_start(commentForm, {'action': path ('comment_add')}) }}
 
         {{ form(commentForm, { 'attr': { 'class': 'comment-form' }}) }} 
@@ -27,7 +27,7 @@
 
         </div>
 
-        <div class="comment-list">
+        <div class="comment-list p-2">
         {% for comment in article.comments %}
 
         {% include 'comment/index.html.twig' with [comment] %}
