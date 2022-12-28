@@ -5,10 +5,10 @@
     <div class="comment mb-5" id="comment-{{ comment.id }}">
         <h5 class="card-title">
             <a class="text-decoration-none text-dark" href="#">
-            <span class="comment-author text-dark">{{ username }}</span>
+            <span class="comment-author text-dark p-2">{{ username }}</span>
             </a> {{ comment.createdAt|date('d M Y à H:i:s') }}
         </h5>
 
-        <p class="card-text text-dark">{{ comment.content }}
+        <p class="card-text text-dark p-2">{{ comment.content }}
         </p>
 </div>
