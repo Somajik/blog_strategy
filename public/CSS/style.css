@@ -1,0 +1,22 @@
+
+.alignement {
+    padding: 0px 1em !important;
+    
+}
+
+.description {
+    margin: auto !important;
+    
+}
+.categorylist {
+   
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    
+} 
+
+.categorylist img {
+    margin:auto;
+
+}

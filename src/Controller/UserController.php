@@ -35,7 +35,10 @@ class UserController extends AbstractController
                 'required'=>'false',
                 'label' => 'Mot de passe'
             ])
-            ->add('Modifier_le_profil', SubmitType::class)
+            ->add('Modifier_le_profil', SubmitType::class,[
+                'attr'=>['class' => 'btn btn-secondary']]
+                //changement de couleur du boutton modifier profil en gris au lieu de bleu//
+            )
             ->getForm();
 
         $form->handleRequest($request);

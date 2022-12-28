@@ -3,10 +3,10 @@
 {% block title %}profil{% endblock %}
 
 {% block body %}
-<div class="container w-25 text-primary">
+<div class="container w-25 text-secondary">
     <div class="row">
         <div class="col">
-        <h2 class="text-primary">Profil de {{ user.username|capitalize }}</h2>
+        <h2 class="text-secondary">Profil de {{ user.username|capitalize }}</h2>
       
             {{ form_start(updateForm, { attr: {novalidate: 'novalidate'} }) }}
             {{ form(updateForm) }}

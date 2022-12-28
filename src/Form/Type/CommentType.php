@@ -24,8 +24,8 @@ class CommentType extends AbstractType
 
             ->add('article', HiddenType::class)// champs caché pour rattaché un commentaire a un article//
             ->add('send',SubmitType::class, [
-                'label' => 'Envoyer'
-            ]
+                'label' => 'Envoyer',
+                'attr' =>   ['class'=> 'btn-secondary']            ]
             );
             $builder->get('article')
             ->addModelTransformer(new CallbackTransformer(

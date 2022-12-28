@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,7 @@ class CategoryController extends AbstractController
         }
         return $this->render('category/show.html.twig', [
             'category' => $category,
+            
         ]);
     }
 }

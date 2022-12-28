@@ -9,18 +9,41 @@
 
     </div> #}
 
-<div class="col-md-6 col-sm-6 highlight">
-            <img src="{{ asset ('uploads/' ~ article.picture) }}" loading="lazy" width="300" height="200" class="figure-img rounded" alt="...">
-             {# <figcaption class="figure-caption fs-1"> {{ article.title }}</figcaption>   #}
-            <div class="h-caption">
-                 <h2><a class="text-black text-decoration-none fs-3" href="{{ article_show }} {{ article.title }}">
-                 {{ article.title }}</a ></h2>
-                 </div>
-                 <div class="h-body text-center">
-                <p class="text-black ">{{article.createdAt |date ('d M Y') }}</p>
-                <p class="text-black d-flex justify-content"> {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ ''}}</p> <!--sinon prendre la description du text ou les 130 premer caractére du content et "~" a la fin on ajoute ... -->
-          </div>
+<div class="card m-3" style="width: 22rem;">
+  <img src="{{ asset ('uploads/' ~ article.picture) }}" loading="lazy" width="325" height="200" class="figure-img rounded" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ article.title }}</h5>
+    <p class="card-text">{{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ ''}}</p>
+
+    <a href="{{ article_show }} {{ article.title }}" class="btn btn-secondary">Lire l'article</a>
+  </div>
 </div>
 
-</article>
 
+
+
+{# <div class="col-md-6 col-sm-6 highlight mb-5 ">
+
+	<img
+	src="{{ asset ('uploads/' ~ article.picture) }}" loading="lazy" width="350" height="200" class="figure-img rounded" alt="...">
+
+	
+	<div class="alignement">
+		<div class="h-caption">
+			<h2>
+				<a class="text-black text-decoration-none fs-3" href="{{ article_show }} {{ article.title }}">
+					{{ article.title }}</a>
+			</h2>
+		</div>
+		<div class="h-body">
+
+			<p class="text-black ">{{article.createdAt |date ('d M Y') }}</p>
+			<div class="d-flex">
+				<p class="text-black description">
+					{{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ ''}}</p>
+			</div> #}
+			<!--sinon prendre la description du text ou les 130 premer caractére du content et "~" a la fin on ajoute ... -->
+		{# </div>
+	</div>
+</div> #}
+</article>
