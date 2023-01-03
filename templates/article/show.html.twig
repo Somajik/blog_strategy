@@ -5,6 +5,11 @@
 {% block body %}
     <div class="container text-dark">
         <h1 class="text-dark p-5 text-decoration-underline ">{{ article.title }}</h1>
+        {# <a>{{ category.name }}</a> #}
+        {% for category in article.categories %}
+        <a class="nav-link active text-dark fs-1" href="{{ path ('category_show', { slug: category.slug }) }}">{{category.name}}</a>
+        <br>
+        {% endfor %}
         <div class="d-flex justify-content-left">
         <img src="{{ asset ('uploads/' ~ article.picture) }}" alt="" loading="lazy" width="900" height="500">
     </div>

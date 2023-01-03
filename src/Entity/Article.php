@@ -71,6 +71,8 @@ class Article
         return $this->title;
     }
 
+   
+
     public function setTitle(string $title): self
     {
         $this->title = $title;
@@ -200,6 +202,7 @@ class Article
     {
         return $this->title; //pour recuperer l'element titre en string de l entity article //
     }
+    
 
     public function getPicture(): ?string
     {
