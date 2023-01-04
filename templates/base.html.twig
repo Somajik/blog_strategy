@@ -40,16 +40,18 @@
             </div>
         
         </nav>
-
+{# logo #}
         <div class="container">
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a class="d-flex align-items-center mb-3 mb-md-auto text-dark text-decoration-none" href="{{ path('home') }}">
+                <div class="logo">
+                <img src="{{ asset('images/logo.png') }}" alt="" style="width:300px; height:auto; margin:50px ">
+                    <span class="fs-1 text-dark font-weight-bolder">Blog Strategy</span>
+                    </a>
                 
-                <span class="fs-4 text-black">Blog Strategy</span>
-                </a>
-
                 <ul class-"nav nav-pills">
-               
+               </div>
+               {# logo #}
                     
                    
                     {% if not is_granted ('IS_AUTHENTICATED_FULLY') %}

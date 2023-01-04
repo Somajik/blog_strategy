@@ -54,7 +54,10 @@ class ArticleCrudController extends AbstractCrudController
                                             //[timestamp]//
 
         
-        yield DateTimeField::new('createdAt','Date de création');
+        yield DateTimeField::new('createdAt','Date de création')
+        
+        
+        ;
         
 
         yield DateTimeField::new('updateAt', 'Date de mise à jour');
