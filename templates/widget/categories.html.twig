@@ -5,7 +5,7 @@
     <h2 class="fst-italic text-black mb-4">Categories</h2>
         <ol class="list-unstyled nav flex-column">
         {% for category in categories %}
-        <li class="nav-item fs-3 mb-3 text-center">
+        <li class="nav-item fs-3 mb-4 text-center">
     <a class="nav-link active text-white btn btn-secondary" href="{{ path ('category_show', { slug: category.slug }) }}">{{category.name}}</a>
   </li>
         {% endfor %}

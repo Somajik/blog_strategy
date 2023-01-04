@@ -7,8 +7,11 @@
     {# <main class="container"> #}
   
         <div class="row g-5 alignement">
-            <div class="">
-                <h3 class="pb-4 mb-4 fst-italic">{{ category.name }}</h3>
+            <div>
+                <a href="{{ path ("home") }}"><li class="text-secondary list-unstyled ">
+                <img src="{{ asset('images/icone_retour.png')}}" alt="Icon retour" style="width:20px;"><span class="text-decoration-none m-2 ">Retour a l'accueil</span>
+            </li></a>
+                <h3 class="pb-4 mb-4 fst-italic mt-2">Les articles de la catégorie: {{ category.name }}</h3>
                 <div id="article-list">
                      <div class="categorylist ">
                 {% include 'article/list.html.twig' with {articles:category.articles } %}

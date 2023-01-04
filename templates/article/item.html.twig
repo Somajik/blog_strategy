@@ -15,7 +15,7 @@
     <h5 class="card-title">{{ article.title }}</h5>
     <p class="card-text">{{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ ''}}</p>
     {% for category in article.categories %}
-    <p>{{category.name}}</p>
+    <p class="fst-italic text-secondary">Catégorie: {{category.name}}</p>
 
     {% endfor %}
     <a href="{{ article_show }} {{ article.title }}" class="btn btn-secondary">Lire l'article</a>
