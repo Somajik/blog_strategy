@@ -21,6 +21,10 @@ class UserCrudController extends AbstractCrudController
     {
         return User::class;
     }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud->setPageTitle(Crud::PAGE_INDEX, 'Gestion des Utilisateurs');
+    }
 
     public function configureActions(Actions $actions): Actions
     {
@@ -50,6 +54,8 @@ class UserCrudController extends AbstractCrudController
             'Auteur' => 'ROLE_AUTHOR',
             'User' => 'ROLE_USER'
         ]);
+
+        
     
     }
     

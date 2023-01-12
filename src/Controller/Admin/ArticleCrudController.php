@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Entity\Article;
 use Doctrine\ORM\QueryBuilder;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -22,6 +23,10 @@ class ArticleCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Article::class;
+    }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud->setPageTitle(Crud::PAGE_INDEX, 'Articles');
     }
 
     

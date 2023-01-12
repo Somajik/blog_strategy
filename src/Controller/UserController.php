@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+
+use Symfony\Component\Form\Form;
 use App\Form\RegistrationFormType;
+use App\Security\AppLoginAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use App\Security\AppLoginAuthenticator;
 
 class UserController extends AbstractController
 {

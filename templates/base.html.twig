@@ -6,6 +6,8 @@
         <title>Blog {% block title %}Blog{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {# CSS #}
+
        <link rel="stylesheet" href="{{asset('CSS/style.css')}}">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -45,7 +47,7 @@
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a class="d-flex align-items-center mb-3 mb-md-auto text-dark text-decoration-none" href="{{ path('home') }}">
                 <div class="logo">
-                <img src="{{ asset('images/logo.png') }}" alt="" style="width:300px; height:auto; margin:50px ">
+                <img src="{{ asset('images/logo.png') }}" alt="" style="width:100px; height:auto; margin:50px ">
                     <span class="fs-1 text-dark font-weight-bolder">Blog Strategy</span>
                     </a>
                 

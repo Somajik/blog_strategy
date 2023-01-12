@@ -1,60 +1,81 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{article.title}}{% endblock %}
+{% block title %}
+	{{article.title}}
+{% endblock %}
 
 {% block body %}
 
-    <div class="container text-dark">
-    <a href="{{ path ("home") }}"><li class="text-secondary list-unstyled ">
-                <img src="{{ asset('images/icone_retour.png')}}" alt="Icon retour" style="width:20px;"><span class="text-decoration-none m-2 ">Retour a l'accueil</span>
-            </li></a>
-    {# <a class="nav-link link-right text-black m-2 " href="{{ path('home') }}">Retour à l'accueil</a> #}
-        <div class="text-center">
-            <h1 class="text-dark p-5 text-decoration-underline">{{ article.title }}</h1>
-        
-            <p class="text-secondary fs-6">Date de Publication: {{ article.createdAt.format('d/m/Y')}}</p> 
-            <p class="text-secondary fs-6">Date de Mise a Jour: {{ article.updateAt.format('d/m/Y')}}</p>
-            <p class="text-secondary fs-6">Auteur de l'article :{{ article.user }}</p>
-         {# convertir le format date pour l'afficher #}
-          
-            {% for category in article.categories %}
-            <a class="btn btn-secondary m-3" href="{{ path ('category_show', { slug: category.slug }) }}">Consulter les articles de la catégorie : {{category.name}}</a>
-            
-       
-        <br>
-        {% endfor %}
-         </div>
-        <div class="d-flex justify-content-center">
-        <img src="{{ asset ('uploads/' ~ article.picture) }}" alt="" loading="lazy" width="900" height="500">
-    </div>
-       
+	<div class="container text-dark">
+		<a href="{{ path ("home") }}">
+			<li class="text-secondary list-unstyled ">
+				<img src="{{ asset('images/icone_retour.png')}}" alt="Icon retour" style="width:20px;"><span class="text-decoration-none m-2 ">Retour a l'accueil</span>
+			</li>
+		</a>
+		{# <a class="nav-link link-right text-black m-2 " href="{{ path('home') }}">Retour à l'accueil</a> #}
+		<div class="text-center">
+			<h1 class="text-dark p-5 text-decoration-underline">{{ article.title }}</h1>
 
-    <hr><!-- HR ligne horizontale -->
-        <p class="text-dark">{{ article.content|raw}}</p> <!-- filtre twig |raw pour effacer le code "div" qui apparait en html -->
-         {# <p class="text-dark fs-2">Date de Publication: {{ article.createdAt.format('d/m/Y')}}</p> 
-         <p class="text-dark fs-2">Auteur : {{ article.user }}</p>
-         convertir le format date pour l'afficher #}
+			<p class="text-secondary fs-6">Date de Publication:
+				{{ article.createdAt.format('d/m/Y')}}</p>
+			<p class="text-secondary fs-6">Date de Mise a Jour:
+				{{ article.updateAt.format('d/m/Y')}}</p>
 
-        <h2 class="comment-title mt-5 text-dark p-3">
-        <span class ="comment-count">{{ article.comments|length }}</span> commentaire(s)
-        </h2><!--pour compter le nombre d'article-->
+			{# convertir le format date pour l'afficher #}
 
-        <hr>
 
-        <div class="comment-aera mb-5 text-dark p-3">
-        {{ form_start(commentForm, {'action': path ('comment_add')}) }}
+		</div>
+		<div class="d-flex justify-content-center">
+			<img src="{{ asset ('uploads/' ~ article.picture) }}" alt="" loading="lazy" width="900" height="500">
+		</div>
 
-        {{ form(commentForm, { 'attr': { 'class': 'comment-form' }}) }} 
-        {{ form_end(commentForm) }}
 
-        </div>
+		<hr>
+		<!-- HR ligne horizontale -->
+		<p class="text-dark">{{ article.content|raw}}</p>
+		<!-- filtre twig |raw pour effacer le code "div" qui apparait en html -->
 
-        <div class="comment-list p-2">
-        {% for comment in article.comments %}
 
-        {% include 'comment/index.html.twig' with [comment] %}
-        {% endfor %}
-        </div>
-    </div>
+		<p class="text-dark fs-3 m-3">Auteur de l'article :
+			{{ article.user }}</p>
 
-{% endblock %}
+		{% for category in article.categories %}
+			<a class="btn btn-secondary m-3" href="{{ path ('category_show', { slug: category.slug }) }}">Consulter les autres articles de la catégorie :
+				{{category.name}}</a>
+
+			<br>
+		{% endfor %}
+
+
+		<h2 class="comment-title mt-5 text-dark p-3">
+			<span class="comment-count">{{ article.comments|length }}</span>
+			commentaire(s)
+		</h2>
+		<!--pour compter le nombre d'article-->
+
+		<hr>
+        <div class="comment-aera mb-5 text-dark p-3 ms-4">
+		{% if is_granted('ROLE_USER') %}
+
+			{# <div class="comment-aera mb-5 text-dark p-3"> #}
+				{{ form_start(commentForm, {'action': path ('comment_add')}) }}
+
+				{{ form(commentForm, { 'attr': { 'class': 'comment-form' }}) }}
+					{{ form_end(commentForm) }}
+                
+				{% else %}
+					<a class="btn btn-secondary ms-4" href="{{ path('register') }}">Vous devez vous inscrire pour poster un message:
+					</a>
+				{% endif %}
+                </div>
+			
+
+			<div class="comment-list py-2 m-5">
+				{% for comment in article.comments %}
+
+					{% include 'comment/index.html.twig' with [comment] %}
+				{% endfor %}
+			</div>
+		</div>
+
+	{% endblock %}
