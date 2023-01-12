@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -31,6 +32,7 @@ class UserCrudController extends AbstractCrudController
     return $actions
     
           ->remove(Crud::PAGE_INDEX, Action::NEW)
+          
      ;
     }
 
@@ -55,8 +57,10 @@ class UserCrudController extends AbstractCrudController
             'User' => 'ROLE_USER'
         ]);
 
-        
-    
+
+
+        yield BooleanField::new('status','Désactiver le compte')
+        ->renderAsSwitch(true);
     }
     
 }

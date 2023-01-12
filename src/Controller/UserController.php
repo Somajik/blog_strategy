@@ -101,7 +101,7 @@ class UserController extends AbstractController
         // if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
         //     return $this->redirectToRoute('home');
         // }
-
+        
         return $this->render('user/login.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError()

@@ -42,6 +42,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)] 
     private Collection $no;
 
+    #[ORM\Column]
+    private ?bool $Status = null;
+
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];// attribué le role user automatiquement lors de la creation d'un user //
@@ -181,6 +184,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->username;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->Status;
+    }
+
+    public function setStatus(bool $Status): self
+    {
+        $this->Status = $Status;
+
+        return $this;
     }
     
 }
