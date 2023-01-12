@@ -59,7 +59,7 @@ class UserCrudController extends AbstractCrudController
 
 
 
-        yield BooleanField::new('status','Désactiver le compte')
+        yield BooleanField::new('status','activer le compte')
         ->renderAsSwitch(true);
     }
     

@@ -44,12 +44,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?bool $Status = null;
-
+    
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];// attribué le role user automatiquement lors de la creation d'un user //
         $this->comments = new ArrayCollection();
         $this->no = new ArrayCollection();
+        $this->Status = true; // pour mettre statut activé automatiquement pour une inscription//
     }
 
     public function getId(): ?int
