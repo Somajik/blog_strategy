@@ -20,7 +20,8 @@ security:
                 login_path: login
                 check_path: login
                 # enable_csrf: true
-                
+            user_checker: App\Security\UserChecker
+                # faire le lien avec le fichier pour verifier si le user est désactivé 
             logout:
                 path: logout
             #custom_authenticator: App\Security\AppLoginAuthenticator

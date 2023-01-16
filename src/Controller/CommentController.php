@@ -20,17 +20,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class CommentController extends AbstractController
 {
-    #[Route('/ajax/comments/', name: 'comment_add')] //intercepter l'information avant l'article controller faire des requêtes vers le serveur sans recharger la page ;//
+    #[Route('/comments/', name: 'comment_add')] //intercepter l'information avant l'article controller faire des requêtes vers le serveur sans recharger la page ;//
     public function add(Request $request,CommentRepository $commentRepository, ArticleRepository $articleRepository, UserRepository $userRepository, EntityManagerInterface $entityManagerInterface): Response //requete post//
     {
 
         $commentData = $request->request->all('comment');
 
-         if(!$this->isCsrfTokenValid('comment-add', $commentData['_token'])){
-            return $this->json([
-                'code' => 'INVALID_CSRF_TOKEN'
-            ], Response ::HTTP_BAD_REQUEST );
-         }
+       
         $article =$articleRepository->findOneBy(['id'=> $commentData['article']]);
 
         if(!$article) {

@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -37,14 +38,27 @@ class ArticleCrudController extends AbstractCrudController
             yield SlugField::new('slug')
             ->setTargetFieldName('title');
             
+            yield AssociationField::new('user','Auteur')
+            ->setFormTypeOption('query_builder', function (UserRepository $entityRepository) {
+            return $entityRepository->createQueryBuilder('user')
+            ->Where('user.roles LIKE :roleAdmin')
+            ->setParameter('roleAdmin','%ROLE_ADMIN%')
+            ->orWhere('user.roles LIKE :roleAuthor')
+            ->setParameter('roleAuthor','%ROLE_AUTHOR%')
+            ->andWhere('user.Status = :userStatus')
+            ->setParameter('userStatus',true);
+        });
+       
 
-        yield AssociationField::new('user','Auteur')
-        ->setQueryBuilder(
-            fn(QueryBuilder $queryBuilder)=> $queryBuilder->addSelect('user')
-                ->from(User::class,'user')
-                ->Where('user.roles = :roleAdmin')
-                ->setParameter('roleAdmin','["ROLE_ADMIN"]')
-                       ); // pour selectionnare les roles admin et auteur dans le champs auteur //
+
+        // yield AssociationField::new('user','Auteur')
+        // ->setQueryBuilder(
+        //     fn(QueryBuilder $queryBuilder)=> $queryBuilder->addSelect('user')
+        //         ->from(User::class,'user')
+        //         ->Where('user.roles = :roleAdmin')
+        //         ->setParameter('roleAdmin','["ROLE_ADMIN"]')
+        //                ); // pour selectionnare les roles admin et auteur dans le champs auteur //
+       
 
         yield AssociationField::new('categories', 'Catégories');
 
